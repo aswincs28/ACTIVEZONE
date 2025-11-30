@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/mainpage_style.css" />
+    <link rel="shortcut icon" type="image/jpg" href="../static/images/fav.png"/>
+    <title>ACTIVEZONE - Find Nearby Turfs</title>
+
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        overflow-x: hidden;
+      }
+
+      /* --- MAIN SECTION --- */
+      .showcase {
+        position: absolute;
+        width: 100%;
+        min-height: 100vh;
+        padding: 120px 100px 0 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #111;
+        transition: 0.5s ease;
+        z-index: 2;
+        color: #fff;
+      }
+
+      .showcase.active {
+        right: 300px;
+      }
+
+      /* --- HEADER --- */
+      .showcase header {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        padding: 35px 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .logo {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        animation: fadeDown 1s ease forwards;
+      }
+
+      /* --- HAMBURGER --- */
+      .toggle {
+        width: 45px;
+        height: 45px;
+        background: url("../static/images/menu.png") center/60% no-repeat;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      .toggle.active {
+        background: url("../static/images/close.png") center/55% no-repeat;
+      }
+
+      /* --- VIDEO BG --- */
+      .showcase video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.7;
+        animation: fadeIn 2s ease forwards;
+      }
+
+      .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #4f4c4d;
+        mix-blend-mode: overlay;
+      }
+
+      /* --- CENTER TEXT --- */
+      .text {
+        position: relative;
+        max-width: 700px;
+        z-index: 10;
+        animation: slideUp 1.2s ease forwards;
+      }
+
+      .text h2 {
+        font-size: 5em;
+        font-weight: 800;
+        text-transform: uppercase;
+        opacity: 0;
+        animation: fadeSlide 1s ease forwards;
+      }
+
+      .text h3 {
+        font-size: 3.5em;
+        font-weight: 700;
+        text-transform: uppercase;
+        opacity: 0;
+        animation: fadeSlide 1.3s ease forwards;
+      }
+
+      .text p {
+        margin: 20px 0;
+        font-size: 1.1em;
+        opacity: 0;
+        animation: fadeSlide 1.6s ease forwards;
+        max-width: 600px;
+      }
+
+      .text a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 35px;
+        background: #fff;
+        color: #111;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: 0.3s ease;
+        opacity: 0;
+        animation: fadeSlide 2s ease forwards;
+      }
+
+      .text a:hover {
+        letter-spacing: 4px;
+        background: #03a9f4;
+        color: #fff;
+        transform: scale(1.05);
+      }
+
+      /* --- SOCIAL ICONS --- */
+      .social {
+        position: absolute;
+        bottom: 40px;
+        display: flex;
+        z-index: 10;
+        animation: fadeSlide 2.2s ease forwards;
+      }
+
+      .social li {
+        list-style: none;
+      }
+
+      .social li a {
+        margin-right: 20px;
+        transform: scale(0.6);
+        transition: 0.3s ease;
+      }
+
+      .social li a:hover {
+        transform: scale(0.7) translateY(-8px);
+      }
+
+      /* --- GLASS MENU --- */
+      .menu {
+        position: absolute;
+        right: -300px;
+        top: 0;
+        width: 300px;
+        height: 100%;
+        backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.21);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s ease;
+        z-index: 20;
+      }
+
+      .menu.active {
+        right: 0;
+      }
+
+      .menu ul {
+        list-style: none;
+        text-align: center;
+      }
+
+      .menu ul li {
+        margin: 20px 0;
+      }
+
+      .menu ul li a {
+        color: #111;
+        font-size: 24px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s ease;
+      }
+
+      .menu ul li a:hover {
+        color: #03a9f4;
+        letter-spacing: 2px;
+      }
+
+      /* --- ANIMATIONS --- */
+      @keyframes fadeSlide {
+        0% {opacity: 0; transform: translateY(20px);}
+        100% {opacity: 1; transform: translateY(0);}
+      }
+
+      @keyframes slideUp {
+        0% {opacity: 0; transform: translateY(50px);}
+        100% {opacity: 1; transform: translateY(0);}
+      }
+
+      @keyframes fadeDown {
+        0% {opacity: 0; transform: translateY(-20px);}
+        100% {opacity: 1; transform: translateY(0);}
+      }
+
+      @media (max-width: 768px) {
+        .showcase,
+        .showcase header {
+          padding: 40px;
+        }
+
+        .text h2 { font-size: 3em; }
+        .text h3 { font-size: 2em; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="showcase">
+      <header>
+        <h2 class="logo">ACTIVEZONE</h2>
+        <div class="toggle"></div>
+      </header>
+
+      <video src="../static/images/videoos.mp4" muted loop autoplay></video>
+      <div class="overlay"></div>
+
+      <div class="text">
+        <h2>Never Stop</h2>
+        <h3>Be Limitless</h3>
+        <p>Book your nearby turfs instantly with a single tap. Fast, easy & seamless experience.</p>
+        <a href="book_now">LOOK!</a>
+      </div>
+
+      <ul class="social">
+        <li><a href="#"><img src="../static/images/facebook.png" /></a></li>
+        <li><a href="#"><img src="../static/images/instagram.png" /></a></li>
+        <li><a href="#"><img src="../static/images/twitter.png" /></a></li>
+      </ul>
+    </section>
+
+    <!-- MENU -->
+    <div class="menu">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="book_now">Book Now</a></li>
+        <li><a href="aboutus">About Us</a></li>
+        <li><a href="contactus">Contact Us</a></li>
+
+        {% if user.is_authenticated %}
+          <li class="nav-item nav-link">Hello, {{username}}</li>
+          <li class="nav-item"><a href="logout">Logout</a></li>
+        {% else %}
+          <li><a href="signup">SignUp</a></li>
+          <li><a href="login">Login</a></li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <script>
+      const toggle = document.querySelector(".toggle");
+      const showcase = document.querySelector(".showcase");
+      const menu = document.querySelector(".menu");
+
+      toggle.addEventListener("click", () => {
+        toggle.classList.toggle("active");
+        showcase.classList.toggle("active");
+        menu.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'admin_dashboard' %}">🏠 Dashboard</a>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">📊 Reports & Analytics</h1>
+        <p class="text-center text-muted">View user engagement, booking trends, and revenue insights.</p>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm" onclick="alert('User Engagement Details Coming Soon!')">
+                    <h5 class="text-center">👥 User Engagement</h5>
+                    <canvas id="engagementChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm" onclick="alert('Booking Trends Details Coming Soon!')">
+                    <h5 class="text-center">📅 Booking Trends</h5>
+                    <canvas id="bookingChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm" onclick="alert('Revenue Insights Coming Soon!')">
+                    <h5 class="text-center">💰 Revenue Insights</h5>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dataTemplate = (label, color) => ({
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: label,
+                data: [10, 20, 15, 30, 25, 40],
+                backgroundColor: color,
+            }]
+        });
+
+        new Chart(document.getElementById('engagementChart'), { type: 'bar', data: dataTemplate('Users', 'rgba(54, 162, 235, 0.6)') });
+        new Chart(document.getElementById('bookingChart'), { type: 'line', data: dataTemplate('Bookings', 'rgba(255, 99, 132, 0.6)') });
+        new Chart(document.getElementById('revenueChart'), { type: 'pie', data: dataTemplate('Revenue', ['#ffcc00', '#ff6600', '#ff3300', '#cc0000', '#990000', '#660000']) });
+    </script>
+</body>
+</html>

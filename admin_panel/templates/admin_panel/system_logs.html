@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Logs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+        function filterLogs() {
+            let filter = document.getElementById('logSearch').value.toLowerCase();
+            let logs = document.querySelectorAll('.log-entry');
+            logs.forEach(log => {
+                log.style.display = log.innerText.toLowerCase().includes(filter) ? '' : 'none';
+            });
+        }
+    </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6">
+    <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+        <!-- Header with Dashboard button and Dark Mode toggle -->
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold">System Logs</h1>
+            <div class="flex gap-2">
+                <a href="{% url 'admin_dashboard' %}" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">Dashboard</a>
+                <button onclick="toggleDarkMode()" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">Toggle Dark Mode</button>
+            </div>
+        </div>
+
+        <p class="mb-4">Track user activity, payments, and system health.</p>
+
+        <!-- Search input -->
+        <input type="text" id="logSearch" onkeyup="filterLogs()" placeholder="Search logs..." class="w-full p-2 border border-gray-300 rounded-md mb-4">
+
+        <!-- Log entries -->
+        <div class="space-y-2">
+            <div class="log-entry p-3 bg-gray-200 dark:bg-gray-700 rounded-md">[User] - Logged in successfully</div>
+            <div class="log-entry p-3 bg-gray-200 dark:bg-gray-700 rounded-md">[Payment] - Transaction completed</div>
+            <div class="log-entry p-3 bg-gray-200 dark:bg-gray-700 rounded-md">[System] - Server health check passed</div>
+            <div class="log-entry p-3 bg-gray-200 dark:bg-gray-700 rounded-md">[Error] - Failed login attempt</div>
+        </div>
+    </div>
+</body>
+</html>

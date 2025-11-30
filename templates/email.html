@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turf Booking Confirmation | ACTIVEZONE</title>
+ <link rel="shortcut icon" type="image/jpg" href="../static/images/fav.png" />
+<!--[if !mso]><!-- -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<!--<![endif]-->
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', Arial, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+    table {
+        border-collapse: collapse;
+    }
+    .container {
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .header {
+        background-color: #00b665;
+        color: #fff;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 28px;
+    }
+    .content {
+        padding: 30px 20px;
+        text-align: center;
+    }
+    .content h2 {
+        font-size: 22px;
+        margin-bottom: 10px;
+        color: #00b665;
+    }
+    .content p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: #fec300;
+        color: #333;
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+    .btn:hover {
+        background-color: #ffde59;
+    }
+    .footer {
+        background-color: #f0f0f0;
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        color: #777;
+    }
+    /* Responsive */
+    @media only screen and (max-width: 480px) {
+        .header h1 {
+            font-size: 24px;
+        }
+        .content h2 {
+            font-size: 20px;
+        }
+        .content p {
+            font-size: 15px;
+        }
+        .btn {
+            padding: 10px 20px;
+        }
+    }
+</style>
+</head>
+<body>
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="center">
+                <table class="container">
+                    <!-- Header -->
+                    <tr>
+                        <td class="header">
+                            <h1>ACTIVEZONE</h1>
+                        </td>
+                    </tr>
+                    <!-- Content -->
+                    <tr>
+                        <td class="content">
+                            <h2>Booking Confirmed!</h2>
+                            <p>Thank you for booking your turf with us.</p>
+                            <p><strong>Amount Received:</strong> Rs {{amount}}</p>
+                            <p>We hope you have a fantastic time! Stay active and keep playing.</p>
+                            <a href="https://surftheturf.herokuapp.com/" class="btn">Visit Site</a>
+                        </td>
+                    </tr>
+                    <!-- Footer -->
+                    <tr>
+                        <td class="footer">
+                            &copy; 2025 ACTIVEZONE. All rights reserved.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

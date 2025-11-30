@@ -1,0 +1,18 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}ACTIVEZONE ADMIN PANEL{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin_dashboard' %}">ACTIVEZONE ADMIN</a>
+</h1>
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+
+<!-- Custom Favicon -->
+<link rel="icon" href="{% static 'images/play.ico' %}" type="image/x-icon">
+
+{% endblock %}

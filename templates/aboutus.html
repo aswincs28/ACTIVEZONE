@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Highlight Effect</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg" href="../static/images/fav.png" />
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            transition: background 0.5s ease-in-out;
+        }
+
+        /* Team section styling */
+        .team-section {
+            position: relative;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        /* Blurred background for hover effect */
+        .team-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: blur(15px) brightness(0.4);
+            transition: background-image 0.5s ease-in-out, transform 0.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Individual team member cards */
+        .team-member {
+            display: inline-block;
+            margin: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        /* Team member images */
+        .team-member img {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+        }
+
+        /* Hover effect for images */
+        .team-member:hover img {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px #f39c12;
+            filter: brightness(1.2);
+        }
+
+        /* Name styling */
+        .team-member h2 {
+            margin-top: 15px;
+            transition: color 0.3s;
+        }
+
+        /* Name hover effect */
+        .team-member:hover h2 {
+            color: #f39c12;
+        }
+
+        /* Role styling */
+        .team-member p {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+
+        /* Role hover effect */
+        .team-member:hover p {
+            color: #f39c12;
+        }
+
+        /* Tooltip info bubble */
+        .team-member .info-bubble {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(243, 156, 18, 0.9);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, bottom 0.3s;
+        }
+
+        /* Show info bubble on hover */
+        .team-member:hover .info-bubble {
+            opacity: 1;
+            bottom: -70px;
+        }
+
+        /* Small animation for background */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        .team-background:hover {
+            animation: pulse 3s infinite;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px);">
+    <div class="container py-2">
+
+        <!-- Logo + Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img src="../static/images/soc.png" class="logo me-2" alt="Logo" 
+                 style="height:35px; width:35px; object-fit:contain;">
+            <span class="fw-bold" style="letter-spacing: 1px;">ACTIVEZONE</span>
+        </a>
+
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Nav Items -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav align-items-lg-center">
+
+                <li class="nav-item"><a class="nav-link px-3" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="book_now">Book Now</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="aboutus">About Us</a></li>
+                <li class="nav-item"><a class="nav-link px-3 active" href="contactus">Contact Us</a></li>
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link px-3" href="logout">Logout</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link px-3" href="signup">SignUp</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="login">Login</a></li>
+                {% endif %}
+
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+
+    <!-- Blurred background div -->
+    <div class="team-background" id="team-bg"></div>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <h1>Meet Our Team</h1>
+
+        <!-- Team Member 1 -->
+        <div class="team-member" data-bg="../static/images/aswin.jpg">
+            <img src="../static/images/aswin.jpg" alt="Aswin C S">
+            <h2>Aswin C S</h2>
+            <p>Team Lead</p>
+            <div class="info-bubble">Leads project planning & manages ActiveZone</div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="team-member" data-bg="../static/images/alameen.jpg">
+            <img src="../static/images/alameen.jpg" alt="AL Ameen N">
+            <h2>AL Ameen N</h2>
+            <p>Developer</p>
+            <div class="info-bubble">Responsible for backend development & database management</div>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="team-member" data-bg="../static/images/ananya.jpg">
+            <img src="../static/images/ananya.jpg" alt="Ananya Krishnan">
+            <h2>Ananya Krishnan</h2>
+            <p>Designer</p>
+            <div class="info-bubble">Designs UI/UX for web and mobile applications</div>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="team-member" data-bg="../static/images/arathy.jpg">
+            <img src="../static/images/arathy.jpg" alt="Arathy R">
+            <h2>Arathy R</h2>
+            <p>Tester</p>
+            <div class="info-bubble">Ensures quality assurance & bug-free performance</div>
+        </div>
+
+    </section>
+
+    <script>
+        const members = document.querySelectorAll('.team-member');
+        const bgDiv = document.getElementById('team-bg');
+
+        // Hover background effect
+        members.forEach(member => {
+            member.addEventListener('mouseenter', () => {
+                const bg = member.getAttribute('data-bg');
+                bgDiv.style.backgroundImage = `url(${bg})`;
+            });
+
+            member.addEventListener('mouseleave', () => {
+                bgDiv.style.backgroundImage = '';
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+Hello {{ user.username }},
+
+Your booking at ACTIVEZONE has been confirmed!
+
+Booking Details:
+- Turf: {{ booking.turf_name }}
+- Date: {{ booking.selectedDate }}
+- Time Slot: {{ booking.time_slot }}
+- Total Amount Paid: ₹{{ booking.totalAmount }}
+
+Thank you for booking with us! We look forward to seeing you.
+
+Regards,
+ACTIVEZONE Team

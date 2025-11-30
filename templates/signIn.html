@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ACTIVEZONE</title>
+     <link rel="shortcut icon" type="image/jpg" href="../static/images/fav.png" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: url("../static/images/sign_in.jpeg") center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(2px);
+        }
+
+        .login-card {
+            width: 90%;
+            max-width: 420px;
+            background: rgba(255,255,255,0.15);
+            padding: 40px 35px;
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            animation: fadeUp 0.7s ease-in-out;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .icon-box {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin: auto;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid #00b665;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+            color: white;
+            margin-bottom: 20px;
+            transition: 0.4s;
+        }
+
+        .icon-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #00b665;
+        }
+
+        h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.25);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #00b665;
+            box-shadow: 0 0 10px #00b665;
+        }
+
+        label {
+            position: absolute;
+            top: 50%;
+            left: 16px;
+            transform: translateY(-50%);
+            color: #dedede;
+            font-size: 15px;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .input-field:focus + label,
+        .input-field:not(:placeholder-shown) + label {
+            top: 0px;
+            left: 12px;
+            background: rgba(0,0,0,0.6);
+            padding: 0 6px;
+            font-size: 12px;
+            color: #00b665;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #00b665;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            border-radius: 6px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #00a65c;
+            transform: scale(1.03);
+            box-shadow: 0 0 10px #00b665;
+        }
+
+        .extra-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .extra-links a {
+            color: #fff;
+            opacity: 0.8;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .extra-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-card">
+    <div class="icon-box">
+        <i class="fa-solid fa-user"></i>
+    </div>
+
+    <h2>Welcome Back</h2>
+
+    <form action="login" method="post">
+        {% csrf_token %}
+
+        <div class="input-group">
+            <input type="text" name="username" class="input-field" placeholder=" " required>
+            <label>Username</label>
+        </div>
+
+        <div class="input-group">
+            <input type="password" name="password" class="input-field" placeholder=" " required>
+            <label>Password</label>
+        </div>
+
+        <button type="submit" class="login-btn">Sign In</button>
+
+        <div class="extra-links">
+            <a href="#">Forgot Password?</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

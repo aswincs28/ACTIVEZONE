@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispute Handling</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .button-group {
+    display: flex;
+    justify-content: center; /* center both buttons */
+    gap: 15px; /* space between buttons */
+    margin-top: 15px;
+}
+
+.dashboard-btn {
+    background-color: #28a745; /* green for dashboard */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    </style>
+</head>
+<body>
+   <div class="container">
+    <h1>Dispute Handling</h1>
+    <p>Manage customer complaints, refund requests, and conflict resolutions.</p>
+    
+    <div class="button-group">
+        <button class="btn" onclick="handleDispute()">Raise a Dispute</button>
+        <a href="{% url 'admin_dashboard' %}" class="btn dashboard-btn">Dashboard</a>
+    </div>
+</div>
+
+    <script>
+        function handleDispute() {
+            Swal.fire({
+                title: 'Raise a Dispute',
+                text: 'Please provide details about your complaint.',
+                icon: 'info',
+                input: 'text',
+                inputPlaceholder: 'Enter your complaint...',
+                showCancelButton: true,
+                confirmButtonText: 'Submit',
+                preConfirm: (complaint) => {
+                    if (!complaint) {
+                        Swal.showValidationMessage('Complaint details are required');
+                    }
+                    return complaint;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Submitted!', 'Your dispute has been recorded.', 'success');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

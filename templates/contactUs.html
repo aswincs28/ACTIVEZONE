@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us | ACTIVEZONE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="shortcut icon" type="image/jpg" href="../static/images/fav.png" />
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+    body {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    /* Navbar */
+    .navbar { background: rgba(0,0,0,0.6) !important; }
+    .navbar-brand, .nav-link { color: #fff !important; font-weight: 500; }
+    .nav-link.active { color: #f39c12 !important; }
+
+    .logo { height: 50px; margin-right: 10px; }
+
+    /* Contact Section */
+    .contact-section {
+      max-width: 700px;
+      margin: 60px auto;
+      background: rgba(255,255,255,0.05);
+      padding: 50px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    .contact-section h1 {
+      font-size: 48px;
+      color: #f39c12;
+      margin-bottom: 15px;
+    }
+
+    .border { width: 100px; height: 4px; background: #f39c12; margin: 15px auto 40px; border-radius: 2px; }
+
+    /* Form */
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .contact-form input:focus, .contact-form textarea:focus {
+      box-shadow: 0 0 15px 2px #f39c12;
+      background: rgba(255,255,255,0.15);
+    }
+
+    textarea { resize: none; height: 150px; }
+
+    .contact-form-btn {
+      background: #f39c12;
+      border: none;
+      padding: 12px 50px;
+      color: #1f1f1f;
+      font-weight: 600;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contact-form-btn:hover { background: #e67e22; color: #fff; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .contact-section h1 { font-size: 36px; }
+      .border { width: 80px; }
+      .contact-form-btn { width: 100%; float: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/"><img src="../static/images/soc.png" class="logo" alt="Logo">ACTIVEZONE</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="book_now">BookNow</a></li>
+          <li class="nav-item"><a class="nav-link" href="aboutus">AboutUs</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contactus">ContactUs</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
+          {% else %}
+          <li class="nav-item"><a class="nav-link" href="signup">SignUp</a></li>
+          <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <h1>Contact Us</h1>
+    <div class="border"></div>
+    <form class="contact-form" action="{% url 'contactus' %}" method="POST">
+       {% csrf_token %}
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="contact" placeholder="Your Contact No" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <input type="submit" class="contact-form-btn" value="Submit">
+    </form>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
